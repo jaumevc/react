@@ -20,6 +20,13 @@ if(condicio){
     console.log(nom+' '+lastname);
 }
 
-console.log("Hola món "+nom+' i '+nom2+' '+lastname);
+console.log("Hola món "+nom+' +i '+nom2+' '+lastname);
+console.log(`Hola món 
+${nom} i 
+${nom2} 
+${lastname}`);
+
+
+
 
 
