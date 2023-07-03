@@ -1,7 +1,14 @@
 
 function sayHello(){
-    console.log("Hola Jaume");
+
+    const greating = 'Hola Mon mundial';
+    // console.log("Hola Jaume");
+
+    return greating;
 };
 
 
-sayHello();
+const result = sayHello();
+
+console.log(result);
+
