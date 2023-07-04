@@ -11,20 +11,26 @@ const invoice = {
     items:[
         {product:'keyboard', price:30, quantity:15},
         {product:'Screan', price:140, quantity:15},
-        {product:'pc', price:540, quantity:15},
+        {product:'pc', price:540, quantity:15}
     ], 
     total: function(){
-        let bill = 0;
-       
-        for(let i=0; i <= this.items.length; i++){
-            bill += this.intems[i].price;
+        let valor = 0;
+        /*
+        for(let i; i<this.items.length; i++){
+            valor = valor + this.items[i].price * this.items[i].quantity;
         }
-        return bill;
+        for(let item in this.items){
+            valor += item.price * item.quantity; 
+        }
+        */ 
+       this.items.forEach(item =>{
+            valor += item.price * item.quantity;
+       });
+        return valor;
     },
     greeting:function() {
         return `Hola ${this.client.name}`;
     }
-
 }
 
 console.log(invoice);
