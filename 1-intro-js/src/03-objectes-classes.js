@@ -1,4 +1,3 @@
-//03-objectes-classes
 const invoice = {
     id:10,
     name: 'Material d\'oficina',
