@@ -15,17 +15,19 @@ const invoice = {
     ], 
     total: function(){
         let valor = 0;
-        /*
-        for(let i; i<this.items.length; i++){
+        for(let i =0; i<this.items.length; i++){
             valor = valor + this.items[i].price * this.items[i].quantity;
         }
-        for(let item in this.items){
-            valor += item.price * item.quantity; 
+        /*
+        for(let valo in this.items){
+            valor += valo.price * valo.quantity; 
         }
-        */ 
-       this.items.forEach(item =>{
+       
+        this.items.forEach(item =>{
             valor += item.price * item.quantity;
-       });
+        });
+        */
+        
         return valor;
     },
     greeting:function() {
