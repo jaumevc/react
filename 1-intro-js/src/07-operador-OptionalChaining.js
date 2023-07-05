@@ -1,4 +1,4 @@
-//08-operador-Ternari
+//07-operador-Optional-chaining
 const invoice = {
     id:10,
     name: 'Material d\'oficina',
