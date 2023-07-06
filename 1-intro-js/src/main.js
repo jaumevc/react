@@ -1,37 +1,44 @@
 //10-Arrays i operador Spread
+//const products = ['taula', 4, 'cadira', 'llit', 5.5];
+//products.push('televisor');
+
+//let products = ['taula', 4, 'cadira', 'llit', 5.5];
+//products = products.concat('televisor');
+
 const products = ['taula', 4, 'cadira', 'llit', 5.5];
+const products2 = products.concat(['televisor','laptop']);
 
-products.push('televisor');
-
-console.log("\n");
+console.log("\nProductes:");
 console.log(products);
-//console.log({products});
+console.log("\nProductes:");
+console.log(products2);
 
-console.log("forEach amb funcio de fletxa:\n");
-products.forEach(e => console.log(e));
-console.log("forEach amb funcio de fletxa i parentesis pels arguments:\n");
-products.forEach((el) => {console.log(el)});
-console.log("forEach amb funcio de fletxa reduit al maxim, quan nomes te un argument," 
-    + " directament es pot retornar aquest, no cal posar-lo com a argument:\n");
-products.forEach(console.log);
 
-console.log("\n");
-console.log("forEach amb funcio normal:\n");
-products.forEach(function(ele){
-    console.log(ele);
-});
+const fruits = ['peres', 'pomes', 'prèssecs','melons'];
 
-console.log("\nAmb bucle for:");
-for(const prod of products){
-    console.log(prod);
-}
+//Ara convinarem el contingut dels 2 arrays en un nou array amb l'op. spread
+const market = [...products, ...fruits, 'raïm', 'enciam', 'trunfes'];
 
-console.log("\nAmb bucle for tradicional:");
+//convinacio de arrays amb contact:
+const superMarket = products2.concat(fruits, 'raïm', 'enciam', 'trunfes');
 
-for (let index = 0; index < products.length; index++){
-    const element = products[index];
-    console.log(element);
-}
+//Tambe es pot escriure:
+const carrefour = products2.concat(fruits).concat(['raïm', 'enciam', 'trunfes'])
 
-console.log("\nImprimir element amb indes 3:");
-console.log(products[3]);
+console.log("\nProductes:");
+console.log(products);
+
+console.log("\nFruites:");
+console.log(fruits);
+
+console.log("\nMarket(...Spread), Fruites i Productes:");
+console.log(market);
+
+console.log("\nSuperMarket(concat), Fruites i Productes2:");
+console.log(superMarket);
+console.log("\nCarrefour(concat), Fruites i Productes2:");
+console.log(carrefour);
+
+
+
+
