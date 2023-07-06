@@ -1,4 +1,4 @@
-//10-Arrays i operador Spread
+//09-Arrays
 const products = ['taula', 4, 'cadira', 'llit', 5.5];
 
 products.push('televisor');
