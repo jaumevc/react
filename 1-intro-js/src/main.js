@@ -1,26 +1,34 @@
-//08-operador-Ternari
-const average = 5.9;
+//09-Arrays
+const products = ['taula', 4, 'cadira', 'llit', 5.5];
 
-//const assoliment = average >= 5.5 ?  'Aprovat' : 'Suspés';
-let assoliment = average >= 5.5 ?  'Aprovat' : 'Suspés';
+products.push('televisor');
 
-console.log(assoliment);
+console.log("\n");
+console.log(products);
+//console.log({products});
 
-if(average >= 5.5){
-    assoliment = 'Aprovat (des de l\'if)';
-} else {
-    assoliment = 'suspés (des de l\'if)';
+console.log("forEach amb funcio de fletxa:\n");
+products.forEach(e => console.log(e));
+console.log("forEach amb funcio de fletxa i parentesis pels arguments:\n");
+products.forEach((el) => {console.log(el)});
+console.log("forEach amb funcio de fletxa reduit al maxim, quan nomes te un argument," 
+    + " directament es pot retornar aquest, no cal posar-lo com a argument:\n");
+products.forEach(console.log);
+
+console.log("\n");
+console.log("forEach amb funcio normal:\n");
+products.forEach(function(ele){
+    console.log(ele);
+});
+
+console.log("\nAmb bucle for:");
+for(const prod of products){
+    console.log(prod);
 }
 
-console.log(assoliment);
+console.log("\nAmb bucle for tradicional:");
 
-let max=0;
-const a= 5;
-const b= 9;
-const c= 3;
-
-max = a > b ? a :  b;
-
-max = max > c ? max :  c;
-
-console.log('el número més gran és: '+max);
+for (let index = 0; index < products.length; index++){
+    const element = products[index];
+    console.log(element);
+}
