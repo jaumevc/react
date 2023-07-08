@@ -1,4 +1,4 @@
-//11-desestructurar-objectes
+//11-desestructurar objectes en funcions
 
 const user ={
     username: 'Jaume',
