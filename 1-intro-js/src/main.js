@@ -1,4 +1,4 @@
-//12ru-desestructurar objectes en funcions
+//12ru-desestructurar arrays
 
 const user ={
     username: 'Jaume',
