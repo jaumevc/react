@@ -1,4 +1,4 @@
-//12ru-desestructurar arrays
+//13-desestructurar arrays
 
 const user ={
     username: 'Jaume',
