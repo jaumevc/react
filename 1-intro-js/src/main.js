@@ -1,4 +1,4 @@
-//14-Arrays-Map-method
+//15-Arrays-find-filter-other-methods
 const invoices = [
     {
         id:1,
@@ -80,36 +80,11 @@ const invoices = [
     }
 ];
 
-/*
-Map method, és similar al forEach(), 
-pero el forEach és per executar algo, per mostrar alguna informació, per a iterar, mostrar en el log...
-es un procediment, no retorna res, no modifica res (es una funcio que no retorna res, es per mostrar algo...).
+//const invoice =  invoices.find(factura => {return factura.id === 3});
+const invoiceById =  invoices.find(factura => factura.id === 3);
+const invoiceByName =  invoices.find(factura => factura.name === 'Material magatzem');
+const invoiceByClientName =  invoices.find(factura => factura.client.name === 'Corporation TURURUT');
 
-Mentre que el Map, es reb l'objecte i podem modificar l'objecte al nostre gust. Retorna algo amb un calcul, alguna modificació...
-Com retorna algo, sempre retorna un nou ARRAY
-
-es necessita passar per argument un CALLBACK, que és com un forEach, pero que retorna algo
-*/
-/*
-const invoices2= invoices.map( factura =>{
-    return factura;
-}); 
-console.log(invoices2);
-*/
-
-const invoicesName= invoices.map( factura =>{
-    if(factura.id==2){
-        factura.name = 'Diputació';
-    }
-    return factura.name;
-}); 
-
-console.log(invoices);
-console.log(invoicesName);
-
-const invoicesNameClient= invoices.map( factura =>{
-    return factura.client.name;
-}); 
-
-console.log(invoicesNameClient);
-
+console.log(invoiceById);
+console.log(invoiceByName);
+console.log(invoiceByClientName);
