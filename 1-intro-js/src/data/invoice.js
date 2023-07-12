@@ -1,7 +1,7 @@
 
-export const itemReferencia ={product:'gamming chair', price:340, quantity:15};
+const itemReferencia ={product:'gamming chair', price:340, quantity:15};
 
-export const invoices = [
+const invoices = [
     {
         id:1,
         name: 'Material d\'oficina',
@@ -82,9 +82,22 @@ export const invoices = [
             return `Hola ${this.client.name}`;
         }
     }
-    
+
 ];
 
-export const invoiceByName = (nom) =>{
+
+const invoiceByName = (nom) =>{
     return invoices.find(factura => factura.name === nom);
+}
+
+/*
+export default (nom) =>{
+    return invoices.find(factura => factura.name === nom);
+}
+*/
+
+export {
+    itemReferencia,
+    invoices as default,
+    invoiceByName 
 }

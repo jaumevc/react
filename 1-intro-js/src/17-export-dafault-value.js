@@ -1,4 +1,4 @@
-//17-export-dafault-value
+//18-promises
 
 //import {invoices, itemReferencia, invoiceByName} from './data/invoice';
 //import invoiceByName,{ invoices, itemReferencia } from './data/invoice';
