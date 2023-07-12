@@ -82,6 +82,7 @@ export const invoices = [
             return `Hola ${this.client.name}`;
         }
     }
+    
 ];
 
 export const invoiceByName = (nom) =>{
