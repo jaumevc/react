@@ -96,8 +96,13 @@ export default (nom) =>{
 }
 */
 
+const invoiceById = (id) =>{
+    return invoices.find(factura => factura.id === id);
+} 
+
 export {
     itemReferencia,
     invoices as default,
-    invoiceByName 
+    invoiceByName,
+    invoiceById 
 }
