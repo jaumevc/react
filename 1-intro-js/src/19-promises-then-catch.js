@@ -1,4 +1,4 @@
-//20-promises-functions
+//19-promises-then-catch
 
 //import {invoices, itemReferencia, invoiceByName} from './data/invoice';
 //import invoiceByName,{ invoices, itemReferencia } from './data/invoice';
@@ -24,7 +24,7 @@ const promise = new Promise((resolve, reject) => {
 });
 
 
-//Quan es resolt amb èxit + o quan hi ha un error:
+//Quan es resolt amb èxit:
 promise.then(console.log).catch(console.error);
 
 
