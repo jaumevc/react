@@ -100,9 +100,31 @@ const invoiceById = (id) =>{
     return invoices.find(factura => factura.id === id);
 } 
 
+const findInvoicesById =  (id)=>{
+    //AQUEST ÉS ASSINCRONE AMB LO QUE S'EXECUTA EN 2ON TERME
+    const promise = new Promise((resolve, reject) => {
+    //normalment s'usa per consumir apis externes en que no sabem si hi haura una errada de comunicacio...
+    //simulem un Delay amb setTimeOut:
+    setTimeout(()=>{
+        const result = invoiceById(id); 
+        //console.log(invoiceById(3));
+        
+        if(result){
+            resolve(result);
+        }else{
+            reject('error: No existeix el recurs');
+        }
+
+        },2500);
+    });
+
+    return promise;
+}
+
 export {
     itemReferencia,
     invoices as default,
     invoiceByName,
-    invoiceById 
+    invoiceById,
+    findInvoicesById 
 }
