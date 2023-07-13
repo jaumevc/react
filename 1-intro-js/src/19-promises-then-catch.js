@@ -24,7 +24,7 @@ const promise = new Promise((resolve, reject) => {
 });
 
 
-//Quan es resolt amb èxit:
+//Quan es resolt amb èxit + o quan hi ha un error:
 promise.then(console.log).catch(console.error);
 
 

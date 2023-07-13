@@ -1,4 +1,4 @@
-//22-Async-Await
+//21-fetch_api
 
 //El fetch es una Promise que retorna un response que és una altra Promise per poder convertir-ho a un cert format (xe:json)
 //Enlloc del httpClient tb li podriem dir promise -> ja que es una promesa 
