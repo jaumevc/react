@@ -24,12 +24,13 @@ const findAllUsers = async()=>{
     //El fetch es una promesa i amb el await diem que esperem a que es resolgui
     const response = await fetch('https://jsonplaceholder.typicode.com/users');// amb await es converteix a la resposta
     //El json tb es una promesa i tb espeara el resolve de la promesa
-    const data = await response.json(); //amb el await es converteix al data, al json de resposta
-    console.log(data);
-    return data;
+    return await response.json(); //amb el await es converteix al data, al json de resposta
+    //console.log(data);
+    //return data;
 }
 
-findAllUsers();
+const users = await findAllUsers();
+console.log(users);
 
 console.log('Mostrant si hi ha delay');
 
