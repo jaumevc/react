@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import PropTypes from 'prop-types';
 
 /*
 function HelloWorld({user, id}){
@@ -19,10 +20,21 @@ const HelloWorld = ({user, id, title = 'Hello mondie!!'})=>{
             <>
                 <h1>{title}</h1>
                 {/* <div>Hello Món mundial i valor variable = {JSON.stringify(user)}, amb id = {id + 50} i càrrec = {carrec}</div>  */}
-                <p>el usuari es diu {user.name} {user.lastName}</p>
+                <p>L'usuari es diu {user.name} {user.lastName}, amb l'id:{id}</p>
             </>
         );
 }
+
+HelloWorld.propTypes = {
+    title: PropTypes.string.isRequired,
+    id: PropTypes.number,
+    user: PropTypes.object.isRequired
+
+}
+
+
 export{
     HelloWorld 
 }
+
+
