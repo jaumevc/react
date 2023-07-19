@@ -13,7 +13,7 @@ function HelloWorld({user, id}){
 }
 */
 
-const HelloWorld = ({user, id, title = 123, book})=>{
+const HelloWorldApp = ({user, id, title = 123, book})=>{
    
     const carrec = 'Boss';
     return (
@@ -26,21 +26,21 @@ const HelloWorld = ({user, id, title = 123, book})=>{
         );
 }
 
-HelloWorld.propTypes = {
+HelloWorldApp.propTypes = {
     title: PropTypes.string.isRequired,
     id: PropTypes.number,
     user: PropTypes.object.isRequired
 
 }
 
-HelloWorld.defaultProps = {
+HelloWorldApp.defaultProps = {
     title: 'Hola mon by default method',
     book: 'java fundamentals'
 }
 
 
 export{
-    HelloWorld 
+    HelloWorldApp 
 }
 
 
