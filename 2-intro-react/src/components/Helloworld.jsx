@@ -13,7 +13,7 @@ function HelloWorld({user, id}){
 }
 */
 
-const HelloWorld = ({user, id, title = 'Hello mondie!!'})=>{
+const HelloWorld = ({user, id, title = 123, book})=>{
    
     const carrec = 'Boss';
     return (
@@ -21,6 +21,7 @@ const HelloWorld = ({user, id, title = 'Hello mondie!!'})=>{
                 <h1>{title}</h1>
                 {/* <div>Hello Món mundial i valor variable = {JSON.stringify(user)}, amb id = {id + 50} i càrrec = {carrec}</div>  */}
                 <p>L'usuari es diu {user.name} {user.lastName}, amb l'id:{id}</p>
+                <p> { book } </p>
             </>
         );
 }
@@ -30,6 +31,11 @@ HelloWorld.propTypes = {
     id: PropTypes.number,
     user: PropTypes.object.isRequired
 
+}
+
+HelloWorld.defaultProps = {
+    title: 'Hola mon by default method',
+    book: 'java fundamentals'
 }
 
 
