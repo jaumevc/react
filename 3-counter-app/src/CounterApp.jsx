@@ -1,15 +1,19 @@
-export const CounterApp = ()=>{
+import { useState } from "react";
 
-    let incremental= 0;
-    const counter = () =>{
-        incremental = incremental+1;
-        console.log(incremental);
+export const CounterApp = ({value})=>{
+
+    // let incremental= 0;
+    
+    const [incremental, setIncremental] = useState(value);
+
+    const contador = () =>{
+        // setIncremental(incremental+1);
+        // setIncremental(c => c+1);
+        setIncremental(incremental => incremental+1);
         }
 
     return <>
         <h2>El valor del contador és: {incremental}</h2>
-        <button onClick= {()=>{
-            counter();
-        }} >Incrmentar +1</button>
+        <button onClick= { contador } >Incrmentar +1</button>
     </>;
 }
