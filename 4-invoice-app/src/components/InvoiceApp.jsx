@@ -34,6 +34,48 @@ const InvoiceApp = () =>{
         <ul>
             <li>{company.name}, <b>amb cif:</b> {company.cif}</li>
         </ul>
+        <h4>Línies de detall de la factura:</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {/* {items.map(item =>{
+                    return(
+                        <tr>
+                            <td>{item.product}</td>
+                            <td>{item.quantity}</td>
+                            <td>{item.price}</td>
+                        </tr>
+                        );
+                    }
+                )} */}
+
+                {/* {items.map(({product, quantity, price}) =>{
+                    return(
+                        <tr>
+                            <td>{product}</td>
+                            <td>{quantity}</td>
+                            <td>{price}</td>
+                        </tr>
+                        );
+                    }
+                )} */}
+
+                {items.map(({id, product, quantity, price}) => (
+                        <tr key={id}>
+                            <td>{product}</td>
+                            <td>{quantity}</td>
+                            <td>{price}</td>
+                        </tr>)
+                        )}
+            </tbody>
+        </table>
+
         </>
     );
 }
