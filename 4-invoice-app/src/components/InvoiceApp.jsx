@@ -1,13 +1,16 @@
 //  import { invoice } from "../data/invoice";
 import { getInvoice } from "../services/getInvoice";
+import { InvoiceClientData } from "./InvoiceClientData";
+import { InvoiceDataRef } from "./invoiceDataRef";
 
-const InvoiceApp = () =>{
+
+const InvoiceApp = () => {
     // const invoice = getInvoice();
-    const {id, name, client,company, items} = getInvoice();
+    const { id, name, client, company, items } = getInvoice();
     //xq no hi hagi conflicte amb el name de la fctra li donem un alies (nameClient) 
     //al nom del client amb name:nameClient
-    const {name:nameClient, lastName, adress} = client;
-    const {country, city, street, number} = adress;
+    const { name: nameClient, lastName, adress } = client;
+    const { country, city, street, number } = adress;
 
     return (
         <>
@@ -18,26 +21,42 @@ const InvoiceApp = () =>{
                         <h3>Exemple Factura</h3>
                     </div>
                     <div className="card-body">
-                        <ul className="list-group">
+
+                        <InvoiceDataRef id={id} name = {name}/>
+
+                        {/* <ul className="list-group">
                             {/* <li> Id: {invoice.id} </li>
-                    <li> Name: {invoice.name} </li> */}
-                            <li className="list-group-item"> Id: {id} </li>
+                            <li> Name: {invoice.name} </li> */}
+                        {/* <li className="list-group-item"> Id: {id} </li>
                             <li className="list-group-item"> Name: {name} </li>
-                        </ul>
+                        </ul> */}
+
                         <div className="row my-3">
                             <div className="col">
                                 <h3>Dades del client:</h3>
-                                <ul className="list-group">
+                                
+                                <InvoiceClientData 
+                                    nameClient = {nameClient}
+                                    lastName = {lastName}
+                                    country = {country}
+                                    city = {city}
+                                    street = {street}
+                                    number = {number}
+                                />
+
+                                {/* <ul className="list-group"> */}
                                     {/* <li>{invoice.client.name} {invoice.client.lastName}</li>
                             <li>{invoice.client.adress.street}, {invoice.client.adress.number}</li>
                             <li>{invoice.client.adress.country}, {invoice.client.adress.city}</li> */}
                                     {/* <li>{client.name} {client.lastName}</li>
                             <li>{client.adress.street}, {client.adress.number}</li>
                             <li>{client.adress.country}, {client.adress.city}</li> */}
-                                    <li className="list-group-item active">{nameClient} {lastName}</li>
+                                    {/* <li className="list-group-item active">{nameClient} {lastName}</li>
                                     <li className="list-group-item">{street}, {number}</li>
                                     <li className="list-group-item">{country}, {city}</li>
-                                </ul>
+                                </ul> */}
+
+
                             </div>
                             <div className="col">
                                 <h3>Dades de l'empresa:</h3>
