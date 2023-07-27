@@ -2,6 +2,9 @@
 import { getInvoice } from "../services/getInvoice";
 import { InvoiceClientData } from "./InvoiceClientData";
 import { InvoiceDataRef } from "./invoiceDataRef";
+import { InvoiceEnterprisseData } from "./InvoiceEnterpriseData";
+import { InvoiceDetail } from "./InvoiceDetail";
+
 
 
 const InvoiceApp = () => {
@@ -60,15 +63,25 @@ const InvoiceApp = () => {
                             </div>
                             <div className="col">
                                 <h3>Dades de l'empresa:</h3>
-                                <ul className="list-group">
+
+                                <InvoiceEnterprisseData
+                                    company = {company}
+                                />
+
+                                {/* <ul className="list-group">
                                     <li className="list-group-item active">{company.name}</li>
                                     <li className="list-group-item"><b>amb cif:</b> {company.cif}</li>
-                                </ul>
+                                </ul> */}
                             </div>
                         </div>
 
                         <h4>Línies de detall de la factura:</h4>
-                        <table className="table table-striped table-hover">
+
+                        <InvoiceDetail 
+                             items = {items}
+                        />
+
+                        {/* <table className="table table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th>Product</th>
@@ -76,7 +89,7 @@ const InvoiceApp = () => {
                                     <th>Price</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody>  */}
                                 {/* {items.map(item =>{
                             return(
                                 <tr>
@@ -86,7 +99,7 @@ const InvoiceApp = () => {
                                 </tr>
                                 );
                             }
-                        )} */}
+                        )}
 
                                 {/* {items.map(({product, quantity, price}) =>{
                             return(
@@ -98,7 +111,7 @@ const InvoiceApp = () => {
                                 );
                             }
                         )} */}
-
+{/* 
                                 {items.map(({ id, product, quantity, price }) => (
                                     <tr key={id}>
                                         <td>{product}</td>
@@ -107,7 +120,7 @@ const InvoiceApp = () => {
                                     </tr>)
                                 )}
                             </tbody>
-                        </table>
+                        </table> */}
                     </div>
                 </div>
             </div>
