@@ -12,8 +12,8 @@ const InvoiceApp = () => {
     const { id, name, client, company, items } = getInvoice();
     //xq no hi hagi conflicte amb el name de la fctra li donem un alies (nameClient) 
     //al nom del client amb name:nameClient
-    const { name: nameClient, lastName, adress } = client;
-    const { country, city, street, number } = adress;
+    // const { name: nameClient, lastName, adress } = client;
+    // const { country, city, street, number } = adress;
 
     return (
         <>
@@ -38,13 +38,17 @@ const InvoiceApp = () => {
                             <div className="col">
                                 <h3>Dades del client:</h3>
                                 
-                                <InvoiceClientData 
+                                {/* <InvoiceClientData 
                                     nameClient = {nameClient}
                                     lastName = {lastName}
                                     country = {country}
                                     city = {city}
                                     street = {street}
                                     number = {number}
+                                /> */}
+
+                                <InvoiceClientData 
+                                    client = {client}
                                 />
 
                                 {/* <ul className="list-group"> */}
