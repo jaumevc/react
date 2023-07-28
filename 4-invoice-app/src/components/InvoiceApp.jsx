@@ -36,7 +36,7 @@ const InvoiceApp = () => {
 
                         <div className="row my-3">
                             <div className="col">
-                                <h3>Dades del client:</h3>
+                                {/* <h3>Dades del client:</h3> */}
                                 
                                 {/* <InvoiceClientData 
                                     nameClient = {nameClient}
@@ -48,6 +48,7 @@ const InvoiceApp = () => {
                                 /> */}
 
                                 <InvoiceClientData 
+                                    title = "Dades del client:"
                                     client = {client}
                                 />
 
@@ -66,9 +67,10 @@ const InvoiceApp = () => {
 
                             </div>
                             <div className="col">
-                                <h3>Dades de l'empresa:</h3>
+                                {/* <h3>Dades de l'empresa:</h3> */}
 
                                 <InvoiceEnterprisseData
+                                    title = "Dades de l'empresa:"
                                     company = {company}
                                 />
 
