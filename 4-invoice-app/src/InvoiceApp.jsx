@@ -1,8 +1,8 @@
-import { getInvoice } from "../services/getInvoice";
-import { InvoiceClientData } from "./InvoiceClientData";
-import { InvoiceDataRef } from "./invoiceDataRef";
-import { InvoiceEnterprisseData } from "./InvoiceEnterpriseData";
-import { InvoiceDetail } from "./InvoiceDetail";
+import { getInvoice } from "./services/getInvoice";
+import { InvoiceClientData } from "./components/InvoiceClientData";
+import { InvoiceDataRef } from "./components/invoiceDataRef";
+import { InvoiceEnterprisseData } from "./components/InvoiceEnterpriseData";
+import { InvoiceDetail } from "./components/InvoiceDetail";
 
 
 

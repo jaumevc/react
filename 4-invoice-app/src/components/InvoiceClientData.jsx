@@ -13,8 +13,14 @@ import PropTypes from 'prop-types';
 // }
 
 export const InvoiceClientData = ({title, client}) => {
-    const { name: nameClient, lastName, adress } = client;
-    const { country, city, street, number } = adress;
+    
+    const { name: nameClient, 
+        lastName, 
+        adress:{ country, city, street, number } 
+    } = client;
+
+
+    // const { country, city, street, number } = adress;
     return (
         <>
             <h3>{title}</h3>
