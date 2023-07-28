@@ -1,3 +1,6 @@
+
+import PropTypes from 'prop-types';
+
 export const InvoiceDataRef = ({id, name})=>{
     return (
         <>
@@ -7,4 +10,9 @@ export const InvoiceDataRef = ({id, name})=>{
             </ul>
         </>
     )
+}
+
+InvoiceDataRef.propTypes = {
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired
 }

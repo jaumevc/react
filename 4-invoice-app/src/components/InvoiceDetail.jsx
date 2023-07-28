@@ -1,3 +1,6 @@
+
+import PropTypes from 'prop-types';
+
 export const InvoiceDetail = ({title, items}) => {
     return (
         <>
@@ -22,4 +25,9 @@ export const InvoiceDetail = ({title, items}) => {
             </table>
         </>
     );
+}
+
+InvoiceDetail.propTypes = {
+    title: PropTypes.string.isRequired,
+    items: PropTypes.array.isRequired
 }

@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 // export const InvoiceClientData = ({nameClient, lastName, street, number, country, city}) => {
 //     return (
 //         <>
@@ -23,4 +25,9 @@ export const InvoiceClientData = ({title, client}) => {
             </ul>
         </>
     );
+}
+
+InvoiceClientData.propTypes = {
+    title: PropTypes.string.isRequired,
+    client: PropTypes.object.isRequired
 }
