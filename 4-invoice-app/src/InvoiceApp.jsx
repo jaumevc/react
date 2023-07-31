@@ -53,6 +53,37 @@ const InvoiceApp = () => {
                                 total = {total}/>
                         </div>
 
+                        <div>
+                            <form>
+                                <input 
+                                    type="text" 
+                                    name="product" 
+                                    placeholder="Producte" 
+                                    className="form-control mt-3 mb-3"
+                                    onChangeCapture={event => {
+                                        console.log(event.target.value);
+                                    }}/>
+                                <input 
+                                    type="text" 
+                                    name="price" 
+                                    placeholder="Preu" 
+                                    className="form-control mb-3"
+                                    onChangeCapture={event => {
+                                        console.log(event.target.value);
+                                    }}
+                                    />
+                                <input 
+                                    type="text" 
+                                    name="quantity" 
+                                    placeholder="Quantitat" 
+                                    className="form-control mb-3"
+                                    onChangeCapture={event => {
+                                        console.log(event.target.value);
+                                    }}
+                                    />
+                            </form>
+                        </div>
+
                     </div>
                 </div>
             </div>
