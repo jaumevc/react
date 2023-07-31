@@ -3,11 +3,13 @@ import { InvoiceClientData } from "./components/InvoiceClientData";
 import { InvoiceDataRef } from "./components/invoiceDataRef";
 import { InvoiceEnterprisseData } from "./components/InvoiceEnterpriseData";
 import { InvoiceDetail } from "./components/InvoiceDetail";
+import { InvoiceTotalDetail } from "./components/InvoicetotalDetail";
+
 
 
 
 const InvoiceApp = () => {
-    const { id, name, client, company, items } = getInvoice();
+    const { id, name, client, company, items, total} = getInvoice();
 
     return (
         <>
@@ -44,6 +46,11 @@ const InvoiceApp = () => {
                                 title = "Línies de detall de la factura:"
                                 items={items}
                             />
+                        </div>
+
+                        <div>
+                            <InvoiceTotalDetail
+                                total = {total}/>
                         </div>
 
                     </div>
