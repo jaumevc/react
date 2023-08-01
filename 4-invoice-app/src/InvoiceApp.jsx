@@ -4,12 +4,16 @@ import { InvoiceDataRef } from "./components/invoiceDataRef";
 import { InvoiceEnterprisseData } from "./components/InvoiceEnterpriseData";
 import { InvoiceDetail } from "./components/InvoiceDetail";
 import { InvoiceTotalDetail } from "./components/InvoicetotalDetail";
-
-
-
+import { useState } from "react";
 
 const InvoiceApp = () => {
-    const { id, name, client, company, items, total} = getInvoice();
+    const { id, name, client, company, items: initialItems, total} = getInvoice();
+
+    const [productValue, setProductValue] = useState('');
+    const [priceValue, setPriceValue] = useState(0);
+    const [quantityValue, setQuantityValue] = useState(0);
+
+    const [items, setItems] = useState(initialItems)
 
     return (
         <>
@@ -54,7 +58,11 @@ const InvoiceApp = () => {
                         </div>
 
                         <div>
-                            <form>
+                            <form className = "w-50" onSubmit={event =>{
+                                event.preventDefault();
+
+                                setItems([...items, {id: 40, product:productValue, price:priceValue, quantity:quantityValue}]);
+                            }}>
                                 <input 
                                     type="text" 
                                     name="product" 
@@ -62,6 +70,7 @@ const InvoiceApp = () => {
                                     className="form-control mt-3 mb-3"
                                     onChangeCapture={event => {
                                         console.log(event.target.value);
+                                        setProductValue(event.target.value);
                                     }}/>
                                 <input 
                                     type="text" 
@@ -70,6 +79,7 @@ const InvoiceApp = () => {
                                     className="form-control mb-3"
                                     onChangeCapture={event => {
                                         console.log(event.target.value);
+                                        setPriceValue(event.target.value);
                                     }}
                                     />
                                 <input 
@@ -79,8 +89,11 @@ const InvoiceApp = () => {
                                     className="form-control mb-3"
                                     onChangeCapture={event => {
                                         console.log(event.target.value);
+                                        setQuantityValue(event.target.value);
                                     }}
                                     />
+
+                                    <button type="submit" className="btn btn-primary">Afegeix</button>
                             </form>
                         </div>
 
