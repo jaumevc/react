@@ -1,5 +1,6 @@
 
 import PropTypes from 'prop-types';
+import { InvoiceDetailRowItem } from './InvoiceDetailRowItem';
 
 export const InvoiceDetail = ({title, items}) => {
     return (
@@ -15,12 +16,21 @@ export const InvoiceDetail = ({title, items}) => {
                 </thead>
                 <tbody>
                     {items.map(({ id, product, quantity, price }) => (
-                        <tr key={id}>
-                            <td>{product}</td>
-                            <td>{quantity}</td>
-                            <td>{price}</td>
-                        </tr>)
-                    )}
+                        // <tr key={id}>
+                        //     <td>{product}</td>
+                        //     <td>{quantity}</td>
+                        //     <td>{price}</td>
+                        // </tr>)
+                        //el id serà nomes per poder renderitzar cada element
+                        <InvoiceDetailRowItem
+                            key = { id }
+                            product =  { product }
+                            quantity = { quantity }
+                            price =    { price }
+                        />
+                        
+                    ))} 
+                    
                 </tbody>
             </table>
         </>
@@ -29,5 +39,5 @@ export const InvoiceDetail = ({title, items}) => {
 
 InvoiceDetail.propTypes = {
     title: PropTypes.string.isRequired,
-    items: PropTypes.array.isRequired
+    items: PropTypes.array.isRequired,
 }
