@@ -7,11 +7,13 @@ import { InvoiceTotalDetail } from "./components/InvoicetotalDetail";
 import { useState } from "react";
 
 const InvoiceApp = () => {
-    const { id, name, client, company, items: initialItems, total} = getInvoice();
+    const { id, name, client, company, items: initialItems, total } = getInvoice();
 
     const [productValue, setProductValue] = useState('');
-    const [priceValue, setPriceValue] = useState(0);
-    const [quantityValue, setQuantityValue] = useState(0);
+    // const [priceValue, setPriceValue] = useState(0);
+    // const [quantityValue, setQuantityValue] = useState(0);
+    const [priceValue, setPriceValue] = useState('');
+    const [quantityValue, setQuantityValue] = useState('');
 
     const [items, setItems] = useState(initialItems)
 
@@ -47,53 +49,78 @@ const InvoiceApp = () => {
 
                         <div>
                             <InvoiceDetail
-                                title = "Línies de detall de la factura:"
+                                title="Línies de detall de la factura:"
                                 items={items}
                             />
                         </div>
 
                         <div>
                             <InvoiceTotalDetail
-                                total = {total}/>
+                                total={total} />
                         </div>
 
                         <div>
-                            <form className = "w-50" onSubmit={event =>{
-                                event.preventDefault();
+                            <form className="w-50" onSubmit={
+                                event => {
+                                    event.preventDefault();
 
-                                setItems([...items, {id: 40, product:productValue, price:priceValue, quantity:quantityValue}]);
-                            }}>
-                                <input 
-                                    type="text" 
-                                    name="product" 
-                                    placeholder="Producte" 
+                                    setItems([...items, {
+                                        id: 40,
+                                        product: productValue,
+                                        //afegint l'operador UNARI [+] convertim string a number
+                                        price: +priceValue,
+                                        //parsejant (lo que bolem convertir, en base 10)
+                                        quantity: parseInt(quantityValue, 10)
+                                    }]);
+
+                                    setProductValue('');
+                                    // setPriceValue(0);
+                                    // setQuantityValue(0);
+                                    setPriceValue('');
+                                    setQuantityValue('');
+                                }
+                            }>
+                                <input
+                                    type="text"
+                                    name="product"
+
+                                    value={ productValue }
+
+                                    placeholder="Producte"
                                     className="form-control mt-3 mb-3"
-                                    onChangeCapture={event => {
-                                        console.log(event.target.value);
+                                    onChange={event => {
+                                        // console.log(event.target.value);
                                         setProductValue(event.target.value);
-                                    }}/>
-                                <input 
-                                    type="text" 
-                                    name="price" 
-                                    placeholder="Preu" 
+                                    }}
+                                />
+                                <input
+                                    type="text"
+                                    name="price"
+
+                                    value={ priceValue }
+
+                                    placeholder="Preu"
                                     className="form-control mb-3"
-                                    onChangeCapture={event => {
-                                        console.log(event.target.value);
+                                    onChange={event => {
+                                        // console.log(event.target.value);
                                         setPriceValue(event.target.value);
                                     }}
-                                    />
-                                <input 
-                                    type="text" 
-                                    name="quantity" 
-                                    placeholder="Quantitat" 
+                                />
+                                <input
+                                    type="text"
+                                    name="quantity"
+
+                                    value={ quantityValue }
+
+                                    placeholder="Quantitat"
                                     className="form-control mb-3"
-                                    onChangeCapture={event => {
-                                        console.log(event.target.value);
+                                    onChange={event => {
+                                        // console.log(event.target.value);
                                         setQuantityValue(event.target.value);
                                     }}
-                                    />
+                                />
 
-                                    <button type="submit" className="btn btn-primary">Afegeix</button>
+                                <button type="submit" className="btn btn-primary">Afegeix</button>
                             </form>
                         </div>
 
