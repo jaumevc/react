@@ -17,6 +17,8 @@ const InvoiceApp = () => {
 
     const [items, setItems] = useState(initialItems)
 
+    const [counter, setCounter] = useState(40);
+
     return (
         <>
             <div className="container">
@@ -64,8 +66,13 @@ const InvoiceApp = () => {
                                 event => {
                                     event.preventDefault();
 
+                                    //trim és per eliminar espais
+                                    if(productValue.trim().length <= 1) return;
+                                    if(priceValue.trim().length < 1) return;
+                                    if(quantityValue.trim().length < 1) return;
+
                                     setItems([...items, {
-                                        id: 40,
+                                        id: counter,
                                         product: productValue,
                                         //afegint l'operador UNARI [+] convertim string a number
                                         price: +priceValue,
@@ -78,6 +85,8 @@ const InvoiceApp = () => {
                                     // setQuantityValue(0);
                                     setPriceValue('');
                                     setQuantityValue('');
+
+                                    setCounter(counter+10);
                                 }
                             }>
                                 <input
