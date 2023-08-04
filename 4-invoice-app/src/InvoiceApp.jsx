@@ -65,35 +65,39 @@ const InvoiceApp = () => {
                             <form className="w-50" onSubmit={
                                 event => {
                                     event.preventDefault();
-
                                     //trim és per eliminar espais
-                                    if(productValue.trim().length <= 1) return;
-                                    if(priceValue.trim().length < 1) return;
-                                    if(quantityValue.trim().length < 1) return;
-
+                                    if (productValue.trim().length <= 1) return;
+                                    // if(priceValue.trim().length < 1) return;
+                                    // if(quantityValue.trim().length < 1) return;
+                                    if (isNaN(priceValue.trim())) {
+                                        alert('el camp ha de ser numèric');
+                                        netejarInputs();
+                                        return;
+                                    }
+                                    if (isNaN(quantityValue.trim())) {
+                                        alert('el camp ha de ser numèric');
+                                        netejarInputs();
+                                        return;
+                                    }
                                     setItems([...items, {
                                         id: counter,
                                         product: productValue,
                                         //afegint l'operador UNARI [+] convertim string a number
-                                        price: +priceValue,
+                                         //afegeixo el .trim() per eliminar els espais en blanc
+                                        price: +priceValue.trim(),
                                         //parsejant (lo que bolem convertir, en base 10)
-                                        quantity: parseInt(quantityValue, 10)
+                                        //afegeixo el .trim() per eliminar els espais en blanc
+                                        quantity: parseInt(quantityValue.trim(), 10)
                                     }]);
-
-                                    setProductValue('');
-                                    // setPriceValue(0);
-                                    // setQuantityValue(0);
-                                    setPriceValue('');
-                                    setQuantityValue('');
-
-                                    setCounter(counter+10);
+                                    netejarInputs();
+                                    setCounter(counter + 10);
                                 }
                             }>
                                 <input
                                     type="text"
                                     name="product"
 
-                                    value={ productValue }
+                                    value={productValue}
 
                                     placeholder="Producte"
                                     className="form-control mt-3 mb-3"
@@ -106,7 +110,7 @@ const InvoiceApp = () => {
                                     type="text"
                                     name="price"
 
-                                    value={ priceValue }
+                                    value={priceValue}
 
                                     placeholder="Preu"
                                     className="form-control mb-3"
@@ -119,7 +123,7 @@ const InvoiceApp = () => {
                                     type="text"
                                     name="quantity"
 
-                                    value={ quantityValue }
+                                    value={quantityValue}
 
                                     placeholder="Quantitat"
                                     className="form-control mb-3"
@@ -138,6 +142,14 @@ const InvoiceApp = () => {
             </div>
         </>
     );
+
+    function netejarInputs() {
+        setProductValue('');
+        // setPriceValue(0);
+        // setQuantityValue(0);
+        setPriceValue('');
+        setQuantityValue('');
+    }
 }
 
 export {
