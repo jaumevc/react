@@ -19,6 +19,53 @@ const InvoiceApp = () => {
 
     const [counter, setCounter] = useState(40);
 
+    const onProductChange = (event)=>{
+        // console.log(event.target.value);
+        setProductValue(event.target.value);
+    }
+
+    const onPriceChange =(event)=>{
+        // console.log(event.target.value);
+        setPriceValue(event.target.value);
+    }
+
+    //tb podem desestructurar i agafar nomes lo que ens interessa de l'objecte que li passem
+    //en aquest cas, nome el target
+    const onQuantityChange = ({target})=>{
+        // console.log(target.value);
+        setQuantityValue(target.value);
+    }
+
+    const onInvoiceItemsSubmit = (event) =>{
+            event.preventDefault();
+            //trim és per eliminar espais
+            if (productValue.trim().length <= 1) return;
+            // if(priceValue.trim().length < 1) return;
+            // if(quantityValue.trim().length < 1) return;
+            if (isNaN(priceValue.trim())) {
+                alert('el camp ha de ser numèric');
+                netejarInputs();
+                return;
+            }
+            if (isNaN(quantityValue.trim())) {
+                alert('el camp ha de ser numèric');
+                netejarInputs();
+                return;
+            }
+            setItems([...items, {
+                id: counter,
+                product: productValue,
+                //afegint l'operador UNARI [+] convertim string a number
+                 //afegeixo el .trim() per eliminar els espais en blanc
+                price: +priceValue.trim(),
+                //parsejant (lo que bolem convertir, en base 10)
+                //afegeixo el .trim() per eliminar els espais en blanc
+                quantity: parseInt(quantityValue.trim(), 10)
+            }]);
+            netejarInputs();
+            setCounter(counter + 10);
+    }
+
     return (
         <>
             <div className="container">
@@ -62,77 +109,33 @@ const InvoiceApp = () => {
                         </div>
 
                         <div>
-                            <form className="w-50" onSubmit={
-                                event => {
-                                    event.preventDefault();
-                                    //trim és per eliminar espais
-                                    if (productValue.trim().length <= 1) return;
-                                    // if(priceValue.trim().length < 1) return;
-                                    // if(quantityValue.trim().length < 1) return;
-                                    if (isNaN(priceValue.trim())) {
-                                        alert('el camp ha de ser numèric');
-                                        netejarInputs();
-                                        return;
-                                    }
-                                    if (isNaN(quantityValue.trim())) {
-                                        alert('el camp ha de ser numèric');
-                                        netejarInputs();
-                                        return;
-                                    }
-                                    setItems([...items, {
-                                        id: counter,
-                                        product: productValue,
-                                        //afegint l'operador UNARI [+] convertim string a number
-                                         //afegeixo el .trim() per eliminar els espais en blanc
-                                        price: +priceValue.trim(),
-                                        //parsejant (lo que bolem convertir, en base 10)
-                                        //afegeixo el .trim() per eliminar els espais en blanc
-                                        quantity: parseInt(quantityValue.trim(), 10)
-                                    }]);
-                                    netejarInputs();
-                                    setCounter(counter + 10);
-                                }
-                            }>
+                            <form className="w-50" onSubmit={ event =>onInvoiceItemsSubmit(event)}>
                                 <input
                                     type="text"
                                     name="product"
-
                                     value={productValue}
-
                                     placeholder="Producte"
                                     className="form-control mt-3 mb-3"
                                     onChange={event => {
-                                        // console.log(event.target.value);
-                                        setProductValue(event.target.value);
+                                        onProductChange(event);
                                     }}
                                 />
                                 <input
                                     type="text"
                                     name="price"
-
                                     value={priceValue}
-
                                     placeholder="Preu"
                                     className="form-control mb-3"
-                                    onChange={event => {
-                                        // console.log(event.target.value);
-                                        setPriceValue(event.target.value);
-                                    }}
+                                    onChange={event => onPriceChange(event)}
                                 />
                                 <input
                                     type="text"
                                     name="quantity"
-
                                     value={quantityValue}
-
                                     placeholder="Quantitat"
                                     className="form-control mb-3"
-                                    onChange={event => {
-                                        // console.log(event.target.value);
-                                        setQuantityValue(event.target.value);
-                                    }}
+                                    onChange={onQuantityChange}
                                 />
-
                                 <button type="submit" className="btn btn-primary">Afegeix</button>
                             </form>
                         </div>
