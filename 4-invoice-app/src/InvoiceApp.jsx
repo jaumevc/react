@@ -9,16 +9,37 @@ import { useState } from "react";
 const InvoiceApp = () => {
     const { id, name, client, company, items: initialItems, total } = getInvoice();
 
+    const [formItemsState, setFormItemsState] = useState({
+        product: '',
+        price: '',
+        quantity: ''
+    });
+
+    //Ara desestructurem el formItemsState, conté el useState com un objetce amb 3 atributs, 
+    //per poder usar els seus valors en el form, l'hem de desestructurar:
+    const { product, price, quantity } = formItemsState;
+
+    /*
     const [productValue, setProductValue] = useState('');
-    // const [priceValue, setPriceValue] = useState(0);
-    // const [quantityValue, setQuantityValue] = useState(0);
     const [priceValue, setPriceValue] = useState('');
     const [quantityValue, setQuantityValue] = useState('');
+    */
 
     const [items, setItems] = useState(initialItems)
 
     const [counter, setCounter] = useState(40);
 
+
+    const onInputChange = ({target:{name,value}})=>{
+        console.log(name);
+        console.log(value);
+        setFormItemsState({
+            ...formItemsState,
+            [name]:value
+        });
+    }
+
+    /*
     const onProductChange = (event)=>{
         // console.log(event.target.value);
         setProductValue(event.target.value);
@@ -35,34 +56,44 @@ const InvoiceApp = () => {
         // console.log(target.value);
         setQuantityValue(target.value);
     }
+    */
 
     const onInvoiceItemsSubmit = (event) =>{
             event.preventDefault();
             //trim és per eliminar espais
-            if (productValue.trim().length <= 1) return;
+            if (product.trim().length <= 1) return;
             // if(priceValue.trim().length < 1) return;
             // if(quantityValue.trim().length < 1) return;
-            if (isNaN(priceValue.trim())) {
+            if (isNaN(price.trim())) {
                 alert('el camp ha de ser numèric');
-                netejarInputs();
+                //netejarInputs();
+                setFormItemsState;
                 return;
             }
-            if (isNaN(quantityValue.trim())) {
+            if (isNaN(quantity.trim())) {
                 alert('el camp ha de ser numèric');
-                netejarInputs();
+                //netejarInputs();
+                setFormItemsState;
                 return;
             }
             setItems([...items, {
                 id: counter,
-                product: productValue,
+                product: product,
                 //afegint l'operador UNARI [+] convertim string a number
                  //afegeixo el .trim() per eliminar els espais en blanc
-                price: +priceValue.trim(),
+                price: +price.trim(),
                 //parsejant (lo que bolem convertir, en base 10)
                 //afegeixo el .trim() per eliminar els espais en blanc
-                quantity: parseInt(quantityValue.trim(), 10)
+                quantity: parseInt(quantity.trim(), 10)
             }]);
-            netejarInputs();
+
+            //netejarInputs();
+            setFormItemsState({
+                product: '',
+                price: '',
+                quantity: ''
+            });
+
             setCounter(counter + 10);
     }
 
@@ -113,28 +144,29 @@ const InvoiceApp = () => {
                                 <input
                                     type="text"
                                     name="product"
-                                    value={productValue}
+                                    value={product}
                                     placeholder="Producte"
                                     className="form-control mt-3 mb-3"
                                     onChange={event => {
-                                        onProductChange(event);
+                                       // onProductChange(event);
+                                       onInputChange(event);
                                     }}
                                 />
                                 <input
                                     type="text"
                                     name="price"
-                                    value={priceValue}
+                                    value={price}
                                     placeholder="Preu"
                                     className="form-control mb-3"
-                                    onChange={event => onPriceChange(event)}
+                                    onChange={event => onInputChange(event)/*onPriceChange(event)*/}
                                 />
                                 <input
                                     type="text"
                                     name="quantity"
-                                    value={quantityValue}
+                                    value={quantity}
                                     placeholder="Quantitat"
                                     className="form-control mb-3"
-                                    onChange={onQuantityChange}
+                                    onChange={onInputChange/*onQuantityChange*/}
                                 />
                                 <button type="submit" className="btn btn-primary">Afegeix</button>
                             </form>
@@ -146,13 +178,14 @@ const InvoiceApp = () => {
         </>
     );
 
+    /*
     function netejarInputs() {
         setProductValue('');
-        // setPriceValue(0);
-        // setQuantityValue(0);
         setPriceValue('');
         setQuantityValue('');
+        
     }
+    */
 }
 
 export {
