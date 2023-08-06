@@ -4,10 +4,45 @@ import { InvoiceDataRef } from "./components/invoiceDataRef";
 import { InvoiceEnterprisseData } from "./components/InvoiceEnterpriseData";
 import { InvoiceDetail } from "./components/InvoiceDetail";
 import { InvoiceTotalDetail } from "./components/InvoicetotalDetail";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+const invoiceInitial = {
+    id: 0,
+    name:'',
+    client: {
+        name: '',
+        lastName: '',
+        adress: {
+            country: '',
+            city: '',
+            street: '',
+            number: ''
+        },
+    },
+    company: {
+        name:'',
+        cif: '0'
+    },
+    items: []
+};
 
 const InvoiceApp = () => {
-    const { id, name, client, company, items: initialItems, total } = getInvoice();
+
+    // const invoice = getInvoice();
+    const [invoice, setInvoice] = useState(invoiceInitial);
+    //els items els creem amb un state buit amb el invoiceInitial
+    //i li afegirem les dades amb l'useEffect, un cop fem la crida a la persistència
+    const [items, setItems] = useState([]);
+
+    useEffect(()=>{
+        const data = getInvoice();
+        console.log(data);
+        setInvoice(data);
+        setItems(data.items);
+    },[]);
+
+    const { id, name, client, company, items: initialItems, total } = invoice;
+    
 
     const [formItemsState, setFormItemsState] = useState({
         product: '',
@@ -25,7 +60,7 @@ const InvoiceApp = () => {
     const [quantityValue, setQuantityValue] = useState('');
     */
 
-    const [items, setItems] = useState(initialItems)
+    //const [items, setItems] = useState(initialItems)
 
     const [counter, setCounter] = useState(40);
 
