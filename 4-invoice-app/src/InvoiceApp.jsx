@@ -1,4 +1,4 @@
-import { getInvoice } from "./services/getInvoice";
+import { getInvoice, calcularTotal } from "./services/getInvoice";
 import { InvoiceClientData } from "./components/InvoiceClientData";
 import { InvoiceDataRef } from "./components/invoiceDataRef";
 import { InvoiceEnterprisseData } from "./components/InvoiceEnterpriseData";
@@ -27,6 +27,9 @@ const invoiceInitial = {
 };
 
 const InvoiceApp = () => {
+
+    const [total, setTotal]= useState(0);
+
     // const invoice = getInvoice();
     const [invoice, setInvoice] = useState(invoiceInitial);
     //els items els creem amb un state buit amb el invoiceInitial
@@ -41,7 +44,7 @@ const InvoiceApp = () => {
     //Ara desestructurem el formItemsState, conté el useState com un objetce amb 3 atributs, 
     //per poder usar els seus valors en el form, l'hem de desestructurar:
     const { product, price, quantity } = formItemsState;
-    const { id, name, client, company, total } = invoice;
+    const { id, name, client, company } = invoice;
 
     const [counter, setCounter] = useState(40);
 
@@ -51,6 +54,10 @@ const InvoiceApp = () => {
         setInvoice(data);
         setItems(data.items);
     },[]);
+
+    useEffect(()=>{
+        setTotal(calcularTotal(items))
+    },[ items ]);
 
     // useEffect(()=>{
     //     console.log("el preu s'ha modificat");
@@ -64,9 +71,9 @@ const InvoiceApp = () => {
     //     console.log("el contador s'ha modificat");
     // },[ counter]);
 
-    useEffect(()=>{
-        console.log("els items s'han modificat");
-    },[ items ]);
+    // useEffect(()=>{
+    //     console.log("els items s'han modificat");
+    // },[ items ]);
 
     /*
     const [productValue, setProductValue] = useState('');
