@@ -27,12 +27,23 @@ const invoiceInitial = {
 };
 
 const InvoiceApp = () => {
-
     // const invoice = getInvoice();
     const [invoice, setInvoice] = useState(invoiceInitial);
     //els items els creem amb un state buit amb el invoiceInitial
     //i li afegirem les dades amb l'useEffect, un cop fem la crida a la persistència
     const [items, setItems] = useState([]);
+
+    const [formItemsState, setFormItemsState] = useState({
+        product: '',
+        price: '',
+        quantity: ''
+    });
+    //Ara desestructurem el formItemsState, conté el useState com un objetce amb 3 atributs, 
+    //per poder usar els seus valors en el form, l'hem de desestructurar:
+    const { product, price, quantity } = formItemsState;
+    const { id, name, client, company, total } = invoice;
+
+    const [counter, setCounter] = useState(40);
 
     useEffect(()=>{
         const data = getInvoice();
@@ -41,29 +52,29 @@ const InvoiceApp = () => {
         setItems(data.items);
     },[]);
 
-    const { id, name, client, company, items: initialItems, total } = invoice;
-    
+    // useEffect(()=>{
+    //     console.log("el preu s'ha modificat");
+    // },[ price ]);
 
-    const [formItemsState, setFormItemsState] = useState({
-        product: '',
-        price: '',
-        quantity: ''
-    });
+    // useEffect(()=>{
+    //     console.log("el formulari s'ha modificat");
+    // },[ formItemsState ]);
 
-    //Ara desestructurem el formItemsState, conté el useState com un objetce amb 3 atributs, 
-    //per poder usar els seus valors en el form, l'hem de desestructurar:
-    const { product, price, quantity } = formItemsState;
+    // useEffect(()=>{
+    //     console.log("el contador s'ha modificat");
+    // },[ counter]);
+
+    useEffect(()=>{
+        console.log("els items s'han modificat");
+    },[ items ]);
 
     /*
     const [productValue, setProductValue] = useState('');
     const [priceValue, setPriceValue] = useState('');
     const [quantityValue, setQuantityValue] = useState('');
+    
+    const [items, setItems] = useState(initialItems)
     */
-
-    //const [items, setItems] = useState(initialItems)
-
-    const [counter, setCounter] = useState(40);
-
 
     const onInputChange = ({target:{name,value}})=>{
         console.log(name);
@@ -100,14 +111,10 @@ const InvoiceApp = () => {
             // if(priceValue.trim().length < 1) return;
             // if(quantityValue.trim().length < 1) return;
             if (isNaN(price.trim())) {
-                alert('el camp ha de ser numèric');
-                //netejarInputs();
                 setFormItemsState;
                 return;
             }
             if (isNaN(quantity.trim())) {
-                alert('el camp ha de ser numèric');
-                //netejarInputs();
                 setFormItemsState;
                 return;
             }
@@ -121,14 +128,9 @@ const InvoiceApp = () => {
                 //afegeixo el .trim() per eliminar els espais en blanc
                 quantity: parseInt(quantity.trim(), 10)
             }]);
-
             //netejarInputs();
-            setFormItemsState({
-                product: '',
-                price: '',
-                quantity: ''
+            setFormItemsState({ product: '',price: '',quantity: ''
             });
-
             setCounter(counter + 10);
     }
 
