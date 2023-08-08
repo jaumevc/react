@@ -9,7 +9,7 @@ import { FormItemsView } from "./components/FormItemsView";
 
 const invoiceInitial = {
     id: 0,
-    name:'',
+    name: '',
     client: {
         name: '',
         lastName: '',
@@ -21,7 +21,7 @@ const invoiceInitial = {
         },
     },
     company: {
-        name:'',
+        name: '',
         cif: '0'
     },
     items: []
@@ -29,7 +29,7 @@ const invoiceInitial = {
 
 const InvoiceApp = () => {
 
-    const [total, setTotal]= useState(0);
+    const [total, setTotal] = useState(0);
 
     // const invoice = getInvoice();
     const [invoice, setInvoice] = useState(invoiceInitial);
@@ -41,44 +41,32 @@ const InvoiceApp = () => {
 
     const [counter, setCounter] = useState(40);
 
-    useEffect(()=>{
+    useEffect(() => {
         const data = getInvoice();
         console.log(data);
         setInvoice(data);
         setItems(data.items);
-    },[]);
+    }, []);
 
-    useEffect(()=>{
+    useEffect(() => {
         setTotal(calcularTotal(items))
-    },[ items ]);
+    }, [items]);
 
-    // const onInvoiceItemsSubmit = (event) =>{
-    //         event.preventDefault();
-    //         //trim és per eliminar espais
-    //         if (product.trim().length <= 1) return;
-
-    //         if (isNaN(price.trim())) {
-    //             setFormItemsState;
-    //             return;
-    //         }
-    //         if (isNaN(quantity.trim())) {
-    //             setFormItemsState;
-    //             return;
-    //         }
-    //         setItems([...items, {
-    //             id: counter,
-    //             product: product,
-    //             //afegint l'operador UNARI [+] convertim string a number
-    //              //afegeixo el .trim() per eliminar els espais en blanc
-    //             price: +price.trim(),
-    //             //parsejant (lo que bolem convertir, en base 10)
-    //             //afegeixo el .trim() per eliminar els espais en blanc
-    //             quantity: parseInt(quantity.trim(), 10)
-    //         }]);
-    //         setFormItemsState({ product: '',price: '',quantity: ''
-    //         });
-    //         setCounter(counter + 10);
-    // }
+    //com argument passarem l'Item desestructurat i 
+    //li canviem el nom onInvoiceItemsSubmit per handlerAddItems
+    const handlerAddItems = ({ product, price, quantity }) => {
+        setItems([...items, {
+            id: counter,
+            product: product,
+            //afegint l'operador UNARI [+] convertim string a number
+            //afegeixo el .trim() per eliminar els espais en blanc
+            price: +price.trim(),
+            //parsejant (lo que bolem convertir, en base 10)
+            //afegeixo el .trim() per eliminar els espais en blanc
+            quantity: parseInt(quantity.trim(), 10)
+        }]);
+        setCounter(counter + 10);
+    }
 
     return (
         <>
@@ -123,7 +111,11 @@ const InvoiceApp = () => {
                         </div>
 
                         <div>
-                           <FormItemsView/>
+                            {/* desde el fill FormItemsView rebem l'Item i 
+                            l'afegim al formulari q tb esta al fill FormItemsView */}
+                            {/* <FormItemsView handler = {(newItem) => handlerAddItems(newItem)}/> */}
+                            {/* tambe es podria escriure: */}
+                            <FormItemsView handler = { handlerAddItems }/>
                         </div>
 
                     </div>

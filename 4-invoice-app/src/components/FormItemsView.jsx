@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const FormItemsView = () => {
+const FormItemsView = ({ handler }) => {
 
     const [formItemsState, setFormItemsState] = useState({
         product: '',
@@ -33,27 +33,14 @@ const FormItemsView = () => {
             setFormItemsState;
             return;
         }
-        /*
-        setIems: Ho treiem d'aqui xq els items es gestionens des del component principal
-        *//*
-        setItems([...items, {
-            id: counter,
-            product: product,
-            //afegint l'operador UNARI [+] convertim string a number
-             //afegeixo el .trim() per eliminar els espais en blanc
-            price: +price.trim(),
-            //parsejant (lo que bolem convertir, en base 10)
-            //afegeixo el .trim() per eliminar els espais en blanc
-            quantity: parseInt(quantity.trim(), 10)
-        }]);
-        */
+
+        handler(formItemsState);
+        
         setFormItemsState(
             { product: '',
             price: '',
             quantity: ''
         });
-        /*el setCounter tb es gestiona des de el component principal*/
-        //setCounter(counter + 10);
     }
 
     return (
