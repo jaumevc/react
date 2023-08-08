@@ -3,7 +3,7 @@ import { InvoiceClientData } from "./components/InvoiceClientData";
 import { InvoiceDataRef } from "./components/invoiceDataRef";
 import { InvoiceEnterprisseData } from "./components/InvoiceEnterpriseData";
 import { InvoiceDetail } from "./components/InvoiceDetail";
-import { InvoiceTotalDetail } from "./components/InvoicetotalDetail";
+import { InvoiceTotalDetail } from "./components/InvoiceTotalDetail";
 import { useEffect, useState } from "react";
 
 const invoiceInitial = {
