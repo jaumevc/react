@@ -5,6 +5,7 @@ import { InvoiceEnterprisseData } from "./components/InvoiceEnterpriseData";
 import { InvoiceDetail } from "./components/InvoiceDetail";
 import { InvoiceTotalDetail } from "./components/InvoiceTotalDetail";
 import { useEffect, useState } from "react";
+import { FormItemsView } from "./components/FormItemsView";
 
 const invoiceInitial = {
     id: 0,
@@ -36,14 +37,6 @@ const InvoiceApp = () => {
     //i li afegirem les dades amb l'useEffect, un cop fem la crida a la persistència
     const [items, setItems] = useState([]);
 
-    const [formItemsState, setFormItemsState] = useState({
-        product: '',
-        price: '',
-        quantity: ''
-    });
-    //Ara desestructurem el formItemsState, conté el useState com un objetce amb 3 atributs, 
-    //per poder usar els seus valors en el form, l'hem de desestructurar:
-    const { product, price, quantity } = formItemsState;
     const { id, name, client, company } = invoice;
 
     const [counter, setCounter] = useState(40);
@@ -59,87 +52,33 @@ const InvoiceApp = () => {
         setTotal(calcularTotal(items))
     },[ items ]);
 
-    // useEffect(()=>{
-    //     console.log("el preu s'ha modificat");
-    // },[ price ]);
+    // const onInvoiceItemsSubmit = (event) =>{
+    //         event.preventDefault();
+    //         //trim és per eliminar espais
+    //         if (product.trim().length <= 1) return;
 
-    // useEffect(()=>{
-    //     console.log("el formulari s'ha modificat");
-    // },[ formItemsState ]);
-
-    // useEffect(()=>{
-    //     console.log("el contador s'ha modificat");
-    // },[ counter]);
-
-    // useEffect(()=>{
-    //     console.log("els items s'han modificat");
-    // },[ items ]);
-
-    /*
-    const [productValue, setProductValue] = useState('');
-    const [priceValue, setPriceValue] = useState('');
-    const [quantityValue, setQuantityValue] = useState('');
-    
-    const [items, setItems] = useState(initialItems)
-    */
-
-    const onInputChange = ({target:{name,value}})=>{
-        console.log(name);
-        console.log(value);
-        setFormItemsState({
-            ...formItemsState,
-            [name]:value
-        });
-    }
-
-    /*
-    const onProductChange = (event)=>{
-        // console.log(event.target.value);
-        setProductValue(event.target.value);
-    }
-
-    const onPriceChange =(event)=>{
-        // console.log(event.target.value);
-        setPriceValue(event.target.value);
-    }
-
-    //tb podem desestructurar i agafar nomes lo que ens interessa de l'objecte que li passem
-    //en aquest cas, nome el target
-    const onQuantityChange = ({target})=>{
-        // console.log(target.value);
-        setQuantityValue(target.value);
-    }
-    */
-
-    const onInvoiceItemsSubmit = (event) =>{
-            event.preventDefault();
-            //trim és per eliminar espais
-            if (product.trim().length <= 1) return;
-            // if(priceValue.trim().length < 1) return;
-            // if(quantityValue.trim().length < 1) return;
-            if (isNaN(price.trim())) {
-                setFormItemsState;
-                return;
-            }
-            if (isNaN(quantity.trim())) {
-                setFormItemsState;
-                return;
-            }
-            setItems([...items, {
-                id: counter,
-                product: product,
-                //afegint l'operador UNARI [+] convertim string a number
-                 //afegeixo el .trim() per eliminar els espais en blanc
-                price: +price.trim(),
-                //parsejant (lo que bolem convertir, en base 10)
-                //afegeixo el .trim() per eliminar els espais en blanc
-                quantity: parseInt(quantity.trim(), 10)
-            }]);
-            //netejarInputs();
-            setFormItemsState({ product: '',price: '',quantity: ''
-            });
-            setCounter(counter + 10);
-    }
+    //         if (isNaN(price.trim())) {
+    //             setFormItemsState;
+    //             return;
+    //         }
+    //         if (isNaN(quantity.trim())) {
+    //             setFormItemsState;
+    //             return;
+    //         }
+    //         setItems([...items, {
+    //             id: counter,
+    //             product: product,
+    //             //afegint l'operador UNARI [+] convertim string a number
+    //              //afegeixo el .trim() per eliminar els espais en blanc
+    //             price: +price.trim(),
+    //             //parsejant (lo que bolem convertir, en base 10)
+    //             //afegeixo el .trim() per eliminar els espais en blanc
+    //             quantity: parseInt(quantity.trim(), 10)
+    //         }]);
+    //         setFormItemsState({ product: '',price: '',quantity: ''
+    //         });
+    //         setCounter(counter + 10);
+    // }
 
     return (
         <>
@@ -184,36 +123,7 @@ const InvoiceApp = () => {
                         </div>
 
                         <div>
-                            <form className="w-50" onSubmit={ event =>onInvoiceItemsSubmit(event)}>
-                                <input
-                                    type="text"
-                                    name="product"
-                                    value={product}
-                                    placeholder="Producte"
-                                    className="form-control mt-3 mb-3"
-                                    onChange={event => {
-                                       // onProductChange(event);
-                                       onInputChange(event);
-                                    }}
-                                />
-                                <input
-                                    type="text"
-                                    name="price"
-                                    value={price}
-                                    placeholder="Preu"
-                                    className="form-control mb-3"
-                                    onChange={event => onInputChange(event)/*onPriceChange(event)*/}
-                                />
-                                <input
-                                    type="text"
-                                    name="quantity"
-                                    value={quantity}
-                                    placeholder="Quantitat"
-                                    className="form-control mb-3"
-                                    onChange={onInputChange/*onQuantityChange*/}
-                                />
-                                <button type="submit" className="btn btn-primary">Afegeix</button>
-                            </form>
+                           <FormItemsView/>
                         </div>
 
                     </div>
@@ -221,15 +131,6 @@ const InvoiceApp = () => {
             </div>
         </>
     );
-
-    /*
-    function netejarInputs() {
-        setProductValue('');
-        setPriceValue('');
-        setQuantityValue('');
-        
-    }
-    */
 }
 
 export {
