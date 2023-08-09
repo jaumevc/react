@@ -28,6 +28,7 @@ const invoiceInitial = {
 };
 
 const InvoiceApp = () => {
+    const [atciveForm, setActiveForm] = useState(false);
 
     const [total, setTotal] = useState(0);
 
@@ -66,6 +67,10 @@ const InvoiceApp = () => {
             quantity: parseInt(quantity.trim(), 10)
         }]);
         setCounter(counter + 10);
+    }
+
+    const onActiveForm = ()=>{
+        setActiveForm(!atciveForm);
     }
 
     return (
@@ -115,7 +120,11 @@ const InvoiceApp = () => {
                             l'afegim al formulari q tb esta al fill FormItemsView */}
                             {/* <FormItemsView handler = {(newItem) => handlerAddItems(newItem)}/> */}
                             {/* tambe es podria escriure: */}
-                            <FormItemsView handler = { handlerAddItems }/>
+                            <button className="btn btn-secondary" onClick= {onActiveForm}>
+                                {atciveForm == false ? 'Mostrar Formulari':'Amagar Formulari'}
+                            </button>
+                            { atciveForm == false ? '': <FormItemsView handler = { handlerAddItems }/>}
+                            
                         </div>
 
                     </div>
