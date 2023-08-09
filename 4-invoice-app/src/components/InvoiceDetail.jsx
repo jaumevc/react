@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import { InvoiceDetailRowItem } from './InvoiceDetailRowItem';
 
-export const InvoiceDetail = ({title, items}) => {
+export const InvoiceDetail = ({title, items, handlerDeleteItem }) => {
     return (
         <>
             <h4>{title}</h4>
@@ -12,6 +12,7 @@ export const InvoiceDetail = ({title, items}) => {
                         <th>Product</th>
                         <th>Quantity</th>
                         <th>Price</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -21,14 +22,16 @@ export const InvoiceDetail = ({title, items}) => {
                         //     <td>{quantity}</td>
                         //     <td>{price}</td>
                         // </tr>)
-                        //el id serà nomes per poder renderitzar cada element
+                        //el id serà nomes per assignar-lo a la key per poder renderitzar cada element 
                         <InvoiceDetailRowItem
                             key = { id }
+                            // li passem tb el id per poder localitzar el item q eliminarem
+                            id = { id }
                             product =  { product }
                             quantity = { quantity }
                             price =    { price }
+                            handlerDeleteItem = { id => handlerDeleteItem(id) }
                         />
-                        
                     ))} 
                     
                 </tbody>

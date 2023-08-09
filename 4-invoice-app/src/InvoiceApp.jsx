@@ -68,6 +68,11 @@ const InvoiceApp = () => {
         }]);
         setCounter(counter + 10);
     }
+    //Amb el fiter es retorna un nou array 
+    //excloient el item que coincideixi amb l'id que li enviem
+    const handlerDeleteItem = (id) =>{
+        setItems(items.filter(item => item.id != id))
+    }
 
     const onActiveForm = ()=>{
         setActiveForm(!atciveForm);
@@ -107,6 +112,7 @@ const InvoiceApp = () => {
                             <InvoiceDetail
                                 title="Línies de detall de la factura:"
                                 items={items}
+                                handlerDeleteItem = { id => handlerDeleteItem(id) }
                             />
                         </div>
 

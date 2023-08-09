@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-export const InvoiceDetailRowItem = ({ product, quantity, price }) => {
+export const InvoiceDetailRowItem = ({ id, product, quantity, price, handlerDeleteItem }) => {
     return (
         <>
             {/* el key el deixem al component pare */}
@@ -9,6 +9,11 @@ export const InvoiceDetailRowItem = ({ product, quantity, price }) => {
                 <td>{product}</td>
                 <td>{quantity}</td>
                 <td>{price}</td>
+                <td>
+                    <button className='btn btn-danger' onClick={()=>handlerDeleteItem(id)}>
+                        eliminar
+                    </button>
+                </td>
             </tr>
         </>
     );
