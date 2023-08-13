@@ -2,7 +2,7 @@ export const  CartApp = () =>{
     return (
         <>
             <div className="container">
-                <h3>Cistella de Compres</h3>
+                <h3>Productes</h3>
                 <div className="row">
                     <div className="col-4 my-2">
                         <div className="card">
@@ -64,6 +64,35 @@ export const  CartApp = () =>{
                             </div>
                         </div>
                     </div>
+                </div>
+                <div className="my-4 w-50">
+                    <h3>Afegit a Cistella</h3>
+                    <table className="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>Producte</th>
+                                <th>Preu</th>
+                                <th>Quantitat</th>
+                                <th>Subtotal</th>
+                                <th>Descartar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>producte</td>
+                                <td>preu</td>
+                                <td>quantitat</td>
+                                <td>subtotal</td>
+                                <td>eliminar</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colSpan="3" className="text-end fw-bold">Total:</td>
+                                <td colSpan="2" className="text-center">€€€€€</td>
+                            </tr>
+                        </tfoot>
+                    </table>
                 </div>
             </div>
         </>
