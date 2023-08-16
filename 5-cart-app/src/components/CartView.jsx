@@ -1,5 +1,5 @@
 
-export const CartView = () => {
+export const CartView = ({ items }) => {
     return (
         <>
             <table className="table table-hover table-striped">
@@ -13,13 +13,17 @@ export const CartView = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>producte</td>
-                        <td>preu</td>
-                        <td>quantitat</td>
-                        <td>subtotal</td>
-                        <td>eliminar</td>
-                    </tr>
+                    {
+                        items.map(item => (
+                            <tr key={item.product.id}>
+                                <td>{item.product.name}</td>
+                                <td>{item.product.price}</td>
+                                <td>{item.quantity}</td>
+                                <td>{item.quantity * item.product.price}</td>
+                                <td>eliminar</td>
+                            </tr>
+                        ))
+                    }
                 </tbody>
                 <tfoot>
                     <tr>
