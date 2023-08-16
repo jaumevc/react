@@ -21,6 +21,7 @@ export const CatalogView = ()=>{
                             producte => (
                                 <div className="col-4 my-2" key={producte.id}>
                                     <ProductCardView 
+                                        id = { producte.id }
                                         name = { producte.name }
                                         description = { producte.description }
                                         price = { producte.price }

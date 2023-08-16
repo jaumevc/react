@@ -14,6 +14,11 @@ export const CartApp = () => {
 
     const [cartItems, setCartItems] = useState(initialCartItems);
 
+    //Aqui rebem el producte que hem seleccionat per posar a la cistella
+    const handlerAddProduct = ()=>{
+        //VIDEO 86
+    };
+
     return (
         <>
             <div className="container">
