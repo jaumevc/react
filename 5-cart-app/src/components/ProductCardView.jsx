@@ -1,7 +1,7 @@
-export const ProductCardView = ({id, name, description, price }) => {
+export const ProductCardView = ({id, name, description, price, handler }) => {
     //aquesta funció passara cap al pare el producte que hem seleccionat amb el click al bto
     const addProduct = (product) =>{
-
+        handler(product);
     };
 
     return (

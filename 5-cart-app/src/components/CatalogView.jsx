@@ -3,7 +3,7 @@ import { useState } from "react";
 import { getProducts } from "../services/productService";
 import { ProductCardView } from "./ProductCardView";
 
-export const CatalogView = ()=>{
+export const CatalogView = ({ handler })=>{
     // const products= getProducts();
     // es carregarà un array vuit en productes 
     const [products, setProducts] = useState([]);
@@ -25,6 +25,7 @@ export const CatalogView = ()=>{
                                         name = { producte.name }
                                         description = { producte.description }
                                         price = { producte.price }
+                                        handler = { handler }
                                     />
                                 </div>
                             )
