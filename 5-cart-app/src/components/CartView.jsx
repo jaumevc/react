@@ -1,6 +1,17 @@
+import { useEffect, useState } from "react";
+import { totalCistella } from "../services/productService";
 
 export const CartView = ({ items , handlerDelete }) => {
 
+    const [total, setTotal] = useState(0);
+
+    useEffect(()=>{
+        setTotal(
+            totalCistella(items)
+        );
+    },[items]);
+
+    
     const onDeleteProduct = (id)=>{
         handlerDelete(id);
     }
@@ -35,7 +46,7 @@ export const CartView = ({ items , handlerDelete }) => {
                 <tfoot>
                     <tr>
                         <td colSpan="3" className="text-end fw-bold">Total:</td>
-                        <td colSpan="2" className="text-center">€€€€€</td>
+                        <td colSpan="2" className="text-center">{ total }</td>
                     </tr>
                 </tfoot>
             </table>
