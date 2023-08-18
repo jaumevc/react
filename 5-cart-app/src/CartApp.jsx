@@ -24,7 +24,7 @@ export const CartApp = () => {
             setCartItems(
                 // el map ja retorna un array x això eliminem les corxetes i ja conté els item existents
                 cartItems.map((item) => {
-                    if(item.product.id === product.id){
+                    if (item.product.id === product.id) {
                         item.quantity = item.quantity + 1;
                     }
                     return item;
@@ -44,6 +44,12 @@ export const CartApp = () => {
         }
     };
 
+    const handlerDeleteProductCard = (id) => {
+        setCartItems([
+            ...cartItems.filter((item) => item.product.id !== id)
+        ]);
+    };
+
     return (
         <>
             <div className="container">
@@ -52,10 +58,16 @@ export const CartApp = () => {
                 {/* <CatalogView handler= {(product)=>handlerAddProduct(product)}/> */}
                 {/* Pero es pot simplificar així: */}
                 <CatalogView handler={handlerAddProduct} />
-                <div className="my-4 w-50">
-                    <h3>Afegit a Cistella</h3>
-                    <CartView items={cartItems} />
-                </div>
+
+                {
+                    cartItems != null && cartItems.length <= 0  || (
+                        <div className="my-4 w-50">
+                            <h3>Afegit a Cistella</h3>
+                            <CartView items={cartItems} handlerDelete={handlerDeleteProductCard} />
+                        </div>
+                    )
+                }
+
             </div>
         </>
     );
