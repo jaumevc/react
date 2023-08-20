@@ -9,6 +9,10 @@ export const CartView = ({ items , handlerDelete }) => {
         setTotal(
             totalCistella(items)
         );
+        // Almacena la información en sessionStorage 
+        // sessionStorage.setItem("key", "value"); 
+        //nomes es poden desar valors string, amb lo q hem de convertir l'objecte items a string
+        sessionStorage.setItem("cistella", JSON.stringify(items));  
     },[items]);
 
     
