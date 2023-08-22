@@ -12,7 +12,7 @@ export const CartView = ({ items , handlerDelete }) => {
         // Almacena la información en sessionStorage 
         // sessionStorage.setItem("key", "value"); 
         //nomes es poden desar valors string, amb lo q hem de convertir l'objecte items a string
-        sessionStorage.setItem("cistella", JSON.stringify(items));  
+        // sessionStorage.setItem("cistella", JSON.stringify(items));  
     },[items]);
 
     

@@ -1,17 +1,22 @@
-import { useReducer, useState } from "react";
+import { useReducer, useState, useEffect } from "react";
 import { CartView } from "./components/CartView";
 import { CatalogView } from "./components/CatalogView";
 import { itemsReducer } from "./reducer/itemsReducer";
+import { ADD_PRODUCT, DELETE_PRODUCT, UPDATE_PRODUCT } from "./reducer/itemsActions";
 
 const initialCartItems = JSON.parse(sessionStorage.getItem("cistella")) || [];
 
 export const CartApp = () => {
-    
+
     //Inicialment a la cistella no hi tindrem productes:
     // const [cartItems, setCartItems] = useState(initialCartItems);
 
     // el dispatch seria el metode equivalent a setCartItems
     const [cartItems, dispatch] = useReducer(itemsReducer, initialCartItems);
+
+    useEffect(()=>{
+        sessionStorage.setItem("cistella", JSON.stringify(/*items*/cartItems));  
+    },[cartItems]/*[items]*/);
 
     //Aqui rebem el producte que hem seleccionat per posar a la cistella
     const handlerAddProduct = (product) => {
@@ -19,45 +24,23 @@ export const CartApp = () => {
         const hasItem = cartItems.find(item => item.product.id === product.id);
 
         if (hasItem) {
-            // setCartItems(
-            //     // el map ja retorna un array x això eliminem les corxetes i ja conté els item existents
-            //     cartItems.map((item) => {
-            //         if (item.product.id === product.id) {
-            //             item.quantity = item.quantity + 1;
-            //         }
-            //         return item;
-            //     })
-            // );
             dispatch({
-                type:'updateQuantityProductCart',
+                type: UPDATE_PRODUCT,//'updateQuantityProductCart',
                 payload: product
             });
 
         } else {
             dispatch({
-                type:'addProductCart',
+                type: ADD_PRODUCT,//'addProductCart',
                 payload: product
             });
-            //VIDEO 86
-            // setCartItems([
-            //     ...cartItems,
-            //     {
-            //         product,
-            //         quantity: 1,
-            //         // total: product.price * 1 //el total es gestiona en el CartView
-            //     }
-            // ]);
         }
     };
 
     const handlerDeleteProductCard = (id) => {
-        
-        // setCartItems([
-        //     ...cartItems.filter((item) => item.product.id !== id)
-        // ]);
 
         dispatch({
-            type:'deleteProductCart',
+            type: DELETE_PRODUCT,//'deleteProductCart',
             payload: id
         });
     };
