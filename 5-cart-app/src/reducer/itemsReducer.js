@@ -28,7 +28,7 @@ export const itemsReducer = (state = [], action)=>{
 
             return [
                 // ...cartItems.filter((item) => item.product.id !== id)
-                ...state.filter((item) => item.product.id !== action.payload.id)
+                ...state.filter((item) => item.product.id !== id)
             ];
 
        default:
