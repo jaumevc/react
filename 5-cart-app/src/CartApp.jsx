@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { CartView } from "./components/CartView";
 import { CatalogView } from "./components/CatalogView";
 import { useItemsCart } from "./hooks/useItemsCart";
+import { Navbar } from "./components/Navbar";
 // import { itemsReducer } from "./reducer/itemsReducer";
 // import { ADD_PRODUCT, DELETE_PRODUCT, UPDATE_PRODUCT } from "./reducer/itemsActions";
 
@@ -13,6 +14,12 @@ export const CartApp = () => {
     
     return (
         <>
+             <Navbar/>
+
+            {/* <div className="container my-3">
+                <Navbar/>
+            </div> */}
+
             <div className="container my-4">
                 <h3>Productes</h3>
 
