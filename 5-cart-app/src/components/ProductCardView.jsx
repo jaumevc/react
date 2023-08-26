@@ -1,7 +1,14 @@
+import { useNavigate } from "react-router-dom";
+
 export const ProductCardView = ({id, name, description, price, handler }) => {
+
+    const navigate = useNavigate();
+
     //aquesta funció passara cap al pare el producte que hem seleccionat amb el click al bto
     const addProduct = (product) =>{
         handler(product);
+
+        navigate('/cart');
     };
 
     return (
