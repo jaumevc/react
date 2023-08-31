@@ -5,7 +5,7 @@ const initialUserForm = {
     password:'',
     email:''
 }
-export const UserForm = ()=>{
+export const UserForm = ({handlerAddUser})=>{
 
     const [userForm, setUserForm] = useState(initialUserForm);
 
@@ -36,11 +36,9 @@ export const UserForm = ()=>{
             return;
         }
 
-        console.log("enviant dades del form...");
-        console.log(userForm);
-
         //desar els valors userFrom en el llistat d'usuaris
             /*proper capitol. Video 107 Afegir usuari*/
+            handlerAddUser(userForm);
 
         //netejar els inputs amb els valors per defecte
         setUserForm(initialUserForm);
