@@ -28,10 +28,29 @@ export const UserForm = ()=>{
     //     })
     // }
 
+    const onSubmit = (event)=>{
+        event.preventDefault();
+
+        if(!username || !password || !email){
+            alert('Els camps del formulari no poden estar buits');
+            return;
+        }
+
+        console.log("enviant dades del form...");
+        console.log(userForm);
+
+        //desar els valors userFrom en el llistat d'usuaris
+            /*proper capitol. Video 107 Afegir usuari*/
+
+        //netejar els inputs amb els valors per defecte
+        setUserForm(initialUserForm);
+    }
+
     return(
         <>
             <p>Formulari d'Usuari</p>
-            <form>
+
+            <form onSubmit={ onSubmit }>
                 <input 
                     className="form-control my-3 w-75" 
                     placeholder="Username"
