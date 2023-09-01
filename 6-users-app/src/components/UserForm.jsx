@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const initialUserForm = {
-    username:'',
+    userName:'',
     password:'',
     email:''
 }
@@ -9,7 +9,7 @@ export const UserForm = ({handlerAddUser})=>{
 
     const [userForm, setUserForm] = useState(initialUserForm);
 
-    const { username, password, email} = userForm;
+    const { userName, password, email} = userForm;
 
     const onInputChange = (event)=>{
         // console.log(event.target.value);
@@ -31,7 +31,7 @@ export const UserForm = ({handlerAddUser})=>{
     const onSubmit = (event)=>{
         event.preventDefault();
 
-        if(!username || !password || !email){
+        if(!userName || !password || !email){
             alert('Els camps del formulari no poden estar buits');
             return;
         }
@@ -52,8 +52,8 @@ export const UserForm = ({handlerAddUser})=>{
                 <input 
                     className="form-control my-3 w-75" 
                     placeholder="Username"
-                    name="username"
-                    value= {username}
+                    name="userName"
+                    value= {userName}
                     onChange={ onInputChange } 
                 />
                 <input 

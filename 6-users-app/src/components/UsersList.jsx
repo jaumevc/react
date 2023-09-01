@@ -9,6 +9,7 @@ export const UsersList = ({users})=>{
                     <tr>
                         <th>#</th>
                         <th>userName</th>
+                        <th>password</th>
                         <th>email</th>
                         <th>update</th>
                         <th>remove</th>
