@@ -1,6 +1,6 @@
 import { UserRow } from "./UserRow";
 
-export const UsersList = ({users})=>{
+export const UsersList = ({users, handlerRemoveUser})=>{
     return(
         <>
             <p>Llistat d'usuaris</p>
@@ -17,10 +17,14 @@ export const UsersList = ({users})=>{
                 </thead>
                 <tbody>
                     {
-                        users.map(user =>(
+                        users.map(({id, userName, password,email}) =>(
                             <UserRow
-                                key = {user.id}
-                                user= {user}
+                                key = {id}
+                                id = {id}
+                                userName={ userName}
+                                password={password}
+                                email={email}
+                                handlerRemoveUser={handlerRemoveUser}
                             />
                         ))
                     }
