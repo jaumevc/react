@@ -4,11 +4,18 @@ import { UsersList } from "./components/UsersList";
 import { usersReducer } from "./reducers/usersReducer";
 
 const initialUsers = [{
-        id:1,
-        userName: 'pepito',
-        password: '1234',
-        email: 'pepito@mail.cat'
-    }]
+    id:1,
+    userName: 'pepito',
+    password: '1234',
+    email: 'pepito@mail.cat'
+},];
+
+const initialUserForm = {
+    userName:'',
+    password:'',
+    email:''
+}
+
 export const UsersApp = () => {
 
     const [users, dispatch] = useReducer(usersReducer, initialUsers);
@@ -35,14 +42,19 @@ export const UsersApp = () => {
             <div className="row">
                 <div className="col">
                     <UserForm 
+                        initialUserForm  =  {initialUserForm}
                         handlerAddUser = {handlerAddUser}
                     />
                 </div>
                 <div className="col">
-                    <UsersList 
-                        users = { users } //{ initialUsers } 
-                        handlerRemoveUser = {handlerRemoveUser}
-                    />
+                    
+                   { users.length === 0 ?
+                        <div className="alert alert-warning">No hi han usuaris a la llista</div>
+                        : <UsersList 
+                            users = { users } //{ initialUsers } 
+                             handlerRemoveUser = {handlerRemoveUser}
+                            />
+                    }  
                 </div>
             </div>
         </div>
