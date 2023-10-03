@@ -1,77 +1,77 @@
-import { useState } from "react";
+import { useEffect, useState } from "react"
+import Swal from "sweetalert2";
 
-export const UserForm = ({handlerAddUser, initialUserForm})=>{
+export const UserForm = ({ userSelected, handlerAddUser, initialUserForm }) => {
 
     const [userForm, setUserForm] = useState(initialUserForm);
 
-    const { userName, password, email} = userForm;
+    const { id, username, password, email } = userForm;
 
-    const onInputChange = (event)=>{
-        // console.log(event.target.value);
+    useEffect(() => {
+        setUserForm({
+            ...userSelected,
+            password: '',
+        });
+    }, [userSelected]);
+
+    const onInputChange = ({ target }) => {
+        // console.log(target.value)
+        const { name, value } = target;
         setUserForm({
             ...userForm,
-            [event.target.name]:event.target.value
+            [name]: value,
         })
     }
-    //també es pot desestructurar i funciona igual:
-    // const onInputChange = ({target})=>{
-    //     // console.log(target.value);
-    //     const {name, value } = target;
-    //     setUserForm({
-    //         ...userForm,
-    //         [name]:value
-    //     })
-    // }
 
-    const onSubmit = (event)=>{
+    const onSubmit = (event) => {
         event.preventDefault();
+        if (!username || (!password && id === 0) || !email) {
+            Swal.fire(
+                'Erro de validacion',
+                'Debe completar los campos del formulario!',
+                'error'
+            );
 
-        if(!userName || !password || !email){
-            alert('Els camps del formulari no poden estar buits');
             return;
         }
+        // console.log(userForm);
 
-        //desar els valors userFrom en el llistat d'usuaris
-            /*proper capitol. Video 107 Afegir usuari*/
-            handlerAddUser(userForm);
-
-        //netejar els inputs amb els valors per defecte
+        // guardar el user form en el listado de usuarios
+        handlerAddUser(userForm);
         setUserForm(initialUserForm);
     }
-
-    return(
-        <>
-            <p>Formulari d'Usuari</p>
-
-            <form onSubmit={ onSubmit }>
-                <input 
-                    className="form-control my-3 w-75" 
-                    placeholder="Username"
-                    name="userName"
-                    value= {userName}
-                    onChange={ onInputChange } 
-                />
-                <input 
-                    className="form-control my-3 w-75" 
-                    placeholder="Password"
-                    name="password"
-                    type="password"
-                    value= {password}
-                    onChange={ onInputChange } 
-                />
-                <input 
-                    className="form-control my-3 w-75" 
-                    placeholder="Email"
-                    name="email" 
-                    value= {email}
-                    onChange={ onInputChange } 
-                />
-                <button 
-                    type="submit"
-                    className="btn btn-primary">
-                        Afegir
-                </button>
-            </form>
-        </>
-    );
+    return (
+        <form onSubmit={ onSubmit }>
+            <input
+                className="form-control my-3 w-75"
+                placeholder="Username"
+                name="username"
+                value={ username}
+                onChange={onInputChange} />
+            
+            { id > 0 || <input
+                className="form-control my-3 w-75"
+                placeholder="Password"
+                type="password"
+                name="password"
+                value={password}
+                onChange={onInputChange} /> }
+            
+            <input
+                className="form-control my-3 w-75"
+                placeholder="Email"
+                name="email"
+                value={email}
+                onChange={onInputChange} />
+            <input type="hidden"
+                name="id"
+                value={id} />
+            
+            <button
+                className="btn btn-primary"
+                type="submit">
+                {id > 0 ? 'Editar' : 'Crear'}
+            </button>
+        </form>
+    )
 }

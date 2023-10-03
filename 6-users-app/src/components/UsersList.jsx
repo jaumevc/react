@@ -1,35 +1,32 @@
-import { UserRow } from "./UserRow";
+import { UserRow } from "./UserRow"
 
-export const UsersList = ({users, handlerRemoveUser})=>{
-    return(
-        <>
-            <p>Llistat d'usuaris</p>
-            <table className="table table-hover table-striped">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>userName</th>
-                        <th>password</th>
-                        <th>email</th>
-                        <th>update</th>
-                        <th>remove</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        users.map(({id, userName, password,email}) =>(
-                            <UserRow
-                                key = {id}
-                                id = {id}
-                                userName={ userName}
-                                password={password}
-                                email={email}
-                                handlerRemoveUser={handlerRemoveUser}
-                            />
-                        ))
-                    }
-                </tbody>
-            </table>
-        </>
-    );
+export const UsersList = ({ handlerUserSelectedForm, handlerRemoveUser, users = [] }) => {
+
+    return (
+        <table className="table table-hover table-striped">
+
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>username</th>
+                    <th>email</th>
+                    <th>update</th>
+                    <th>remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    users.map(({id, username, email }) => (
+                        <UserRow
+                            key={id}
+                            id={id}
+                            username={username}
+                            email={email}
+                            handlerUserSelectedForm={handlerUserSelectedForm}
+                            handlerRemoveUser={handlerRemoveUser} />
+                    ))
+                }
+            </tbody>
+        </table>
+    )
 }
